@@ -75,9 +75,9 @@ const fetchData = async () => {
     });
 
     const data = await response.json();
-    h1.innerText = 'GraphQL Response:', data;
+    h1.innerText = `GraphQL Response: ${data}`;
   } catch (error) {
-    h1.innerText = 'Error fetching data:', error;
+    h1.innerText = `Error fetching data: ${error}`;
   }
 };
 
