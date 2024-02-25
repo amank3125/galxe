@@ -1,5 +1,6 @@
 const apiUrl = 'https://graphigo.prd.galaxy.eco/query';
-  
+let h1 = document.querySelector('.text');
+
 const query = `
   query CampaignList(
     $id: Int
@@ -74,9 +75,9 @@ const fetchData = async () => {
     });
 
     const data = await response.json();
-    console.log('GraphQL Response:', data);
+    h1.innerText = 'GraphQL Response:', data;
   } catch (error) {
-    console.error('Error fetching data:', error);
+    h1.innerText = 'Error fetching data:', error;
   }
 };
 
