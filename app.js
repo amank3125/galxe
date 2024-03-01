@@ -1,3 +1,4 @@
+console.log('version 1')
 const apiUrl = 'https://graphigo.prd.galaxy.eco/query';
 let h1 = document.querySelector('.text');
 var _address = document.querySelector('.address');
@@ -82,7 +83,12 @@ const fetchData = async () => {
 
     const data = await response.json();
     h1.innerText = `GraphQL Response: ${data}`;
-    console.log(Object.keys(data).includes('errors'));
+    if(Object.keys(data).includes('errors')){
+      console.log(data.errors);
+    }else {
+      console.log(data.data);
+    }
+    
   } catch (error) {
     h1.innerText = `Error fetching data: ${error}`;
   }
