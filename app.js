@@ -2,64 +2,60 @@ const apiUrl = 'https://graphigo.prd.galaxy.eco/query';
 let h1 = document.querySelector('.text');
 
 const query = `
-  query CampaignList(
-    $id: Int
-    $alias: String
-    $campaignInput: ListCampaignInput!
-  ) {
-    space(id: $id, alias: $alias) {
-      id
-      name
-      alias
-      campaigns(input: $campaignInput) {
-        pageInfo {
-          endCursor
-          hasNextPage
-        }
-        list {
-          id
-          name
-        }
+mutation SyncCredentialValue($input: SyncCredentialValueInput!) {
+  syncCredentialValue(input: $input) {
+    value {
+      address
+      spaceUsers {
+        follow
+        points
+        participations
+        __typename
       }
+      campaignReferral {
+        count
+        __typename
+      }
+      gitcoinPassport {
+        score
+        lastScoreTimestamp
+        __typename
+      }
+      walletBalance {
+        balance
+        __typename
+      }
+      multiDimension {
+        value
+        __typename
+      }
+      allow
+      survey {
+        answers
+        __typename
+      }
+      quiz {
+        allow
+        correct
+        __typename
+      }
+      __typename
     }
+    message
+    __typename
   }
+}
 `;
 
-const variables = {
-  "alias": "Quai",
-  "campaignInput": {
-    "forAdmin": false,
-    "first": 2,
-    "after": "-1",
-    "excludeChildren": true,
-    "gasTypes": null,
-    "credSources": null,
-    "rewardTypes": null,
-    "chains": null,
-    "statuses": null,
-    "listType": "Newest",
-    "types": [
-      "Drop",
-      "MysteryBox",
-      "Forge",
-      "MysteryBoxWR",
-      "Airdrop",
-      "ExternalLink",
-      "OptIn",
-      "OptInEmail",
-      "PowahDrop",
-      "Parent",
-      "Oat",
-      "Bounty",
-      "Token",
-      "DiscordRole",
-      "Mintlist",
-      "Points",
-      "PointsMysteryBox"
-    ],
-    "searchString": null
-  }
-};
+const variables = 
+  {
+    "input": {
+      "syncOptions": {
+        "credId": "385014941003821056",
+        "address": "0x2647df0f29c94a2d50d15e7717a797a2815bc323"
+      }
+    }
+  };
 
 const fetchData = async () => {
   try {
