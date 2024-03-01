@@ -1,4 +1,4 @@
-console.log('version 1')
+console.log('version 2')
 const apiUrl = 'https://graphigo.prd.galaxy.eco/query';
 let h1 = document.querySelector('.text');
 var _address = document.querySelector('.address');
