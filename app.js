@@ -84,7 +84,7 @@ const fetchData = async () => {
     const data = await response.json();
     h1.innerText = `GraphQL Response: ${data}`;
     if(Object.keys(data).includes('errors')){
-      console.log(data.errors);
+      console.log(data.errors[0].message);
     }else {
       console.log(data.data);
     }
