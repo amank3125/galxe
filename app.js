@@ -1,5 +1,14 @@
 const apiUrl = 'https://graphigo.prd.galaxy.eco/query';
 let h1 = document.querySelector('.text');
+var _address = document.querySelector('.address');
+function buildData()
+{
+  if(_address.value!=''){
+  fetchData();}
+  else {
+    alert('address cannot be empty!')
+  }
+}
 
 const query = `
 mutation SyncCredentialValue($input: SyncCredentialValueInput!) {
@@ -52,10 +61,11 @@ const variables =
     "input": {
       "syncOptions": {
         "credId": "385014941003821056",
-        "address": "0x2647df0f29c94a2d50d15e7717a797a2815bc323"
+        "address": `${_address.value}`
       }
     }
   };
+
 
 const fetchData = async () => {
   try {
@@ -76,5 +86,3 @@ const fetchData = async () => {
     h1.innerText = `Error fetching data: ${error}`;
   }
 };
-
-fetchData();
